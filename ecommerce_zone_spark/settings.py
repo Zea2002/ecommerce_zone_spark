@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
+# import dj_database_url
 # from environ import Env
 import environ
 # env = Env()
@@ -31,7 +33,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://ecommerce-zone-spark-3hat.vercel.app','localhost']	
+ALLOWED_HOSTS = ['.vercel.app','localhost']	
 
 
 # Application definition
@@ -105,6 +107,7 @@ CSRF_TRUSTED_ORIGINS = [
 #     }
 # }
 DATABASES = {
+    #  'default': dj_database_url.parse(os.getenv('DATABASE_URL')),
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'zone_spark_db',  #  database name
@@ -156,8 +159,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static')
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 AUTH_USER_MODEL = 'user.User'
