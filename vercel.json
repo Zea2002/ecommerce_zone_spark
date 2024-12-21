@@ -1,13 +1,23 @@
 {
-    "builds": [{
+    "builds": [
+      {
         "src": "ecommerce_zone_spark/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
-    }],
+      }
+    ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "ecommerce_zone_spark/wsgi.py"
-        }
-    ]
-}
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "ecommerce_zone_spark/wsgi.py"
+      }
+    ],
+    "scripts": {
+      "build": "python manage.py migrate && python manage.py collectstatic --noinput"
+    }
+  }
+  
