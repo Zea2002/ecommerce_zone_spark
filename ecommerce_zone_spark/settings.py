@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-from environ import Env
+# from environ import Env
 import environ
-env = Env()
+# env = Env()
 env = environ.Env()
 environ.Env.read_env()
 
@@ -89,7 +89,7 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:5000',
 )
 CSRF_TRUSTED_ORIGINS = [
-    'https://computer-club.onrender.com',
+    'https://ecommerce-zone-spark-3hat.vercel.app',
     'http://127.0.0.1:8000',
     'http://localhost:3000', # for localhost (REACT Default)
     'http://localhost:5000',
