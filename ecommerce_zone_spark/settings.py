@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-4m3j4-ik&o_cinsx5$b4-dyuw**%4%(ru$41t$4t6=)s@vc9y@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://ecommerce-zone-spark-3hat.vercel.app','localhost']	
 
 
 # Application definition
