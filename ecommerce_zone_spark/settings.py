@@ -14,9 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 import dj_database_url
-# from environ import Env
 import environ
-# env = Env()
 env = environ.Env()
 environ.Env.read_env()
 
@@ -28,12 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-4m3j4-ik&o_cinsx5$b4-dyuw**%4%(ru$41t$4t6=)s@vc9y@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app',]	
+ALLOWED_HOSTS = ['.vercel.app','127.0.0.1', 'localhost']
+	
 
 
 # Application definition
@@ -109,22 +108,20 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse(os.getenv('DATABASE_URL')),
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'e_commerce_db',
-            'USER': 'postgres',
-            'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': 'dpg-ctk12ejtq21c73e5komg-a',
-            'PORT': '5432',
-        }
-    }
+DATABASES = {
+    'default': dj_database_url.config(default=env('DATABASE_URL'))
+}
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',  # From Railway
+#         'USER': 'postgres',  # From Railway
+#         'PASSWORD': 'HCxLEchoLciScmUmCnlzWFlNQmMLTfdj',  # From Railway
+#         'HOST': 'postgres.railway.internal',  # From Railway
+#         'PORT': '5432',  # Default PostgreSQL port
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -166,10 +163,13 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    BASE_DIR / "static",  # Adjust this if your static files are stored elsewhere
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 AUTH_USER_MODEL = 'user.User'
