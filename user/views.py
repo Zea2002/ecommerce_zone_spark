@@ -3,13 +3,26 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
-from .models import Profile
+from .models import Profile, User
 from .serializers import RegisterSerializer, LoginSerializer, ProfileSerializer, UserSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+class userViewSet(ModelViewSet):
+    """
+    API viewset for user operations.
+    """
+    permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
+    def get_queryset(self):
+        """
+        Optionally restricts the returned users to the currently authenticated user.
+        """
+        user = self.request.user
+        return User.objects.filter(id=user.id)
 #register view and logic for user registration
 class RegisterView(APIView):
     """
