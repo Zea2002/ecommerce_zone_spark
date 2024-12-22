@@ -106,17 +106,24 @@ CSRF_TRUSTED_ORIGINS = [
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
-DATABASES = {
-     'default': dj_database_url.parse(os.getenv('DATABASE_URL')),
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'e_commerce_db',  #  database name
-        'USER': 'postgres',      # PostgreSQL username
-        'PASSWORD':env('DB_PASSWORD'),  #  PostgreSQL password
-        'HOST': 'dpg-ctk12ejtq21c73e5komg-a',     # Hostname
-        'PORT': '5432',          # Default PostgreSQL port
+
+
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL')),
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'e_commerce_db',
+            'USER': 'postgres',
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': 'dpg-ctk12ejtq21c73e5komg-a',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
