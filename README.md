@@ -68,6 +68,7 @@ o	Update Profile
 o	Retrieve Individual Profile 
 	Method: GET
 	URL: https://ecommerce-zone-spark-6zop.vercel.app/user/profile/<id>
+
 o	4.all users:
 o	Api - https://ecommerce-zone-spark-6zop.vercel.app/user/users/
 o	For individual-  https://ecommerce-zone-spark-6zop.vercel.app/user/users/<id>
