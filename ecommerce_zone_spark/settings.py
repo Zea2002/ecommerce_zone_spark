@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
-# import dj_database_url
+import dj_database_url
 # from environ import Env
 import environ
 # env = Env()
@@ -107,13 +107,13 @@ CSRF_TRUSTED_ORIGINS = [
 #     }
 # }
 DATABASES = {
-    #  'default': dj_database_url.parse(os.getenv('DATABASE_URL')),
+     'default': dj_database_url.parse(os.getenv('DATABASE_URL')),
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'zone_spark_db',  #  database name
+        'NAME': 'e_commerce_db',  #  database name
         'USER': 'postgres',      # PostgreSQL username
         'PASSWORD':env('DB_PASSWORD'),  #  PostgreSQL password
-        'HOST': 'localhost',     # Hostname
+        'HOST': 'dpg-ctk12ejtq21c73e5komg-a',     # Hostname
         'PORT': '5432',          # Default PostgreSQL port
     }
 }
